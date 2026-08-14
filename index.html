@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#ff2d55" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Deepika's Birthday 🎂" />
+  <title>Happy Birthday Deepika 🎂 | BirthdayOS v2.0.26</title>
+  <meta name="description" content="A special birthday surprise for Deepika, built with love and code. Happy Birthday! 🎂" />
+  <meta property="og:title" content="Happy Birthday Deepika! 🎂" />
+  <meta property="og:description" content="A birthday experience coded with love ❤️" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CANVAS: Matrix Rain + Particles + Fireworks
+═══════════════════════════════════════════════════════════════ -->
+<canvas id="matrix-canvas"></canvas>
+<canvas id="fireworks-canvas"></canvas>
+<div id="particles-container"></div>
+<div id="cursor-glow"></div>
+<div id="cursor-trail-container"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 1 — BOOT SCREEN / LOADING
+═══════════════════════════════════════════════════════════════ -->
+<section id="boot-screen" class="section active-section">
+  <div class="boot-content">
+    <div class="boot-logo">
+      <span class="boot-icon">💻</span>
+    </div>
+    <h1 class="boot-title">Birthday<span class="accent">OS</span> <span class="version">v2.0.26</span></h1>
+    <p class="boot-subtitle">Initializing Birthday Protocol...</p>
+
+    <div class="progress-container">
+      <div class="progress-label" id="progress-label">Loading kernel modules...</div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <div class="progress-pct" id="progress-pct">0%</div>
+    </div>
+
+    <div class="boot-log" id="boot-log"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 2 — TERMINAL WELCOME
+═══════════════════════════════════════════════════════════════ -->
+<section id="terminal-section" class="section">
+  <div class="terminal-window">
+    <div class="terminal-titlebar">
+      <span class="dot dot-red"></span>
+      <span class="dot dot-yellow"></span>
+      <span class="dot dot-green"></span>
+      <span class="terminal-title">birthday@production: ~</span>
+    </div>
+    <div class="terminal-body" id="terminal-body">
+      <div class="terminal-output" id="terminal-output"></div>
+      <div class="terminal-input-line">
+        <span class="prompt">$&nbsp;</span>
+        <span class="terminal-cursor blink">█</span>
+      </div>
+    </div>
+  </div>
+  <button class="btn-next neon-btn" id="terminal-next-btn" style="display:none" onclick="goToSection('vscode-section')">
+    Open IDE →
+  </button>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 3 — VS CODE THEME MESSAGE
+═══════════════════════════════════════════════════════════════ -->
+<section id="vscode-section" class="section">
+  <div class="vscode-window">
+    <div class="vscode-sidebar">
+      <div class="vscode-sidebar-icon active" title="Explorer">📁</div>
+      <div class="vscode-sidebar-icon" title="Search">🔍</div>
+      <div class="vscode-sidebar-icon" title="Git">🌿</div>
+      <div class="vscode-sidebar-icon" title="Extensions">🧩</div>
+    </div>
+    <div class="vscode-explorer">
+      <div class="explorer-title">BIRTHDAY PROJECT</div>
+      <div class="explorer-item open">📂 src</div>
+      <div class="explorer-item sub active" id="vs-file-heart">❤️ heart.js</div>
+      <div class="explorer-item sub" id="vs-file-cake">🎂 cake.ts</div>
+      <div class="explorer-item sub" id="vs-file-wishes">🎊 wishes.json</div>
+      <div class="explorer-item">📄 README.md</div>
+      <div class="explorer-item">⚙️ package.json</div>
+    </div>
+    <div class="vscode-editor">
+      <div class="vscode-tabs">
+        <div class="vscode-tab active" id="vscode-tab-name">❤️ heart.js</div>
+      </div>
+      <div class="vscode-code-area" id="vscode-code-area">
+        <pre class="code-block" id="vscode-code"></pre>
+      </div>
+    </div>
+  </div>
+  <button class="btn-next neon-btn" id="vscode-next-btn" style="display:none" onclick="goToSection('github-section')">
+    View Contributions →
+  </button>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 4 — GITHUB CONTRIBUTION GRAPH
+═══════════════════════════════════════════════════════════════ -->
+<section id="github-section" class="section">
+  <div class="github-card glass-card">
+    <div class="github-profile">
+      <div class="github-avatar">
+        <span>👩‍💻</span>
+      </div>
+      <div class="github-info">
+        <h2 class="github-name" id="github-name">Deepika</h2>
+        <p class="github-bio">Full-time awesome person · Part-time human · 100% birthday queen 🎂</p>
+        <div class="github-stats">
+          <span>💖 <strong>∞</strong> Happiness</span>
+          <span>⭐ <strong>365</strong> Stars Given</span>
+          <span>🍰 <strong>1</strong> Cake Deserved</span>
+        </div>
+      </div>
+    </div>
+    <div class="github-contrib-section">
+      <p class="contrib-label"><strong id="contrib-count">365</strong> birthday vibes in the last year</p>
+      <div class="contrib-graph" id="contrib-graph"></div>
+      <div class="contrib-legend">
+        <span>Less</span>
+        <div class="legend-box" style="background:#0d1117"></div>
+        <div class="legend-box" style="background:#ff2d55"></div>
+        <div class="legend-box" style="background:#ff6b8a"></div>
+        <div class="legend-box" style="background:#ff9eb5"></div>
+        <div class="legend-box" style="background:#ffc8d6"></div>
+        <div class="legend-box" style="background:#ffe4ec"></div>
+        <span>More ❤️</span>
+      </div>
+    </div>
+    <div class="fake-commits" id="fake-commits">
+      <div class="commit-title">Recent Activity</div>
+    </div>
+  </div>
+  <button class="btn-next neon-btn" id="github-next-btn" style="display:none" onclick="goToSection('hero-section')">
+    Deploy Happiness 🚀
+  </button>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 5 — HERO (MAIN BIRTHDAY PAGE)
+═══════════════════════════════════════════════════════════════ -->
+<section id="hero-section" class="section">
+  <div class="hero-content">
+    <!-- Rocket -->
+    <div class="rocket-container" id="rocket-container">
+      <div class="rocket" id="rocket">🚀</div>
+      <div class="rocket-trail" id="rocket-trail"></div>
+    </div>
+
+    <div class="hero-badge">🎂 PRODUCTION RELEASE</div>
+    <h1 class="hero-title">Happy Birthday,<br><span class="her-name-glow" id="hero-name">Deepika</span></h1>
+    <p class="hero-tagline">You just shipped another year. 🎉<br>And it looks <em>absolutely spectacular</em>.</p>
+
+    <div class="hero-terminal">
+      <span class="ht-prompt">$ </span><span class="ht-cmd" id="hero-cmd"></span>
+    </div>
+
+    <div class="hero-btns">
+      <button class="btn-primary pulse-btn" id="confetti-btn" onclick="triggerConfetti()">
+        🎊 Deploy Happiness
+      </button>
+      <button class="btn-secondary" onclick="goToSection('certificate-section')">
+        View Certificate →
+      </button>
+    </div>
+  </div>
+
+  <!-- Floating decorations -->
+  <div class="float-decor" id="floaters"></div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 6 — CERTIFICATE
+═══════════════════════════════════════════════════════════════ -->
+<section id="certificate-section" class="section">
+  <div class="cert-wrapper">
+    <div class="cert-card">
+      <div class="cert-border-outer">
+        <div class="cert-border-inner">
+          <div class="cert-header">
+            <span class="cert-icon">🏆</span>
+            <p class="cert-sub">Certificate of Achievement</p>
+            <h2 class="cert-title">This Certifies That</h2>
+          </div>
+          <div class="cert-name" id="cert-name">Deepika</div>
+          <p class="cert-body">
+            Has <strong>successfully survived</strong> another production release,<br/>
+            maintained <strong>100% uptime</strong> of joy and laughter,<br/>
+            and deployed <strong>infinite happiness</strong> to all who know her.
+          </p>
+          <div class="cert-stats">
+            <div class="cert-stat">
+              <span class="cstat-num">365</span>
+              <span class="cstat-label">Days Shipped</span>
+            </div>
+            <div class="cert-stat">
+              <span class="cstat-num">∞</span>
+              <span class="cstat-label">Smiles Deployed</span>
+            </div>
+            <div class="cert-stat">
+              <span class="cstat-num">0</span>
+              <span class="cstat-label">Bugs Found</span>
+            </div>
+          </div>
+          <div class="cert-footer">
+            <div class="cert-sig">
+              <div class="sig-line">👨‍💻 Your Friendly Engineer</div>
+              <div class="sig-role">Chief Happiness Officer</div>
+            </div>
+            <div class="cert-stamp">✅ APPROVED</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="btn-next neon-btn" onclick="goToSection('error-section')">
+    Next →
+  </button>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 7 — 404 PAGE
+═══════════════════════════════════════════════════════════════ -->
+<section id="error-section" class="section">
+  <div class="error-content">
+    <div class="error-code">404</div>
+    <div class="error-title">Sadness <span class="strikethrough">Not Found</span></div>
+    <p class="error-desc">
+      We searched every server, every database, every cache.<br/>
+      <strong>Zero results.</strong> Sadness has been permanently <code>rm -rf</code>'d from your life.
+    </p>
+    <div class="error-stack">
+      <code>
+        GET /sadness HTTP/1.1<br/>
+        → 404 Not Found<br/>
+        → Location: /happiness ♥
+      </code>
+    </div>
+    <button class="btn-primary pulse-btn error-btn" id="deploy-btn" onclick="deployHappiness()">
+      Deploy Happiness 🚀
+    </button>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 8 — MATRIX / HIDDEN EASTER EGG
+═══════════════════════════════════════════════════════════════ -->
+<section id="easter-section" class="section" style="display:none">
+  <div class="easter-content">
+    <div class="easter-console">
+      <div class="easter-header">&gt; Developer Console</div>
+      <div class="easter-log" id="easter-log"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FLOATING NAV DOTS
+═══════════════════════════════════════════════════════════════ -->
+<nav class="nav-dots" id="nav-dots">
+  <button class="nav-dot active" data-section="boot-screen" title="Boot"></button>
+  <button class="nav-dot" data-section="terminal-section" title="Terminal"></button>
+  <button class="nav-dot" data-section="vscode-section" title="IDE"></button>
+  <button class="nav-dot" data-section="github-section" title="GitHub"></button>
+  <button class="nav-dot" data-section="hero-section" title="Birthday"></button>
+  <button class="nav-dot" data-section="certificate-section" title="Certificate"></button>
+  <button class="nav-dot" data-section="error-section" title="404"></button>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     AI ASSISTANT POPUP
+═══════════════════════════════════════════════════════════════ -->
+<div class="ai-popup" id="ai-popup">
+  <div class="ai-popup-header">
+    <span class="ai-avatar">🤖</span>
+    <span>Birthday AI Assistant</span>
+    <button class="ai-close" onclick="closeAI()">✕</button>
+  </div>
+  <div class="ai-popup-body" id="ai-popup-body">
+    <p>Hello! 👋 I've analysed your birthday data and found <strong>1 exceptional human</strong> in the dataset.</p>
+    <p>Confidence: <strong>100%</strong> ❤️</p>
+  </div>
+  <div class="ai-popup-footer">
+    <button class="ai-btn" onclick="aiNextMessage()">Next insight →</button>
+  </div>
+</div>
+<button class="ai-trigger" id="ai-trigger" onclick="toggleAI()">🤖</button>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CONFETTI OVERLAY
+═══════════════════════════════════════════════════════════════ -->
+<div id="confetti-overlay"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     MUSIC CONTROL
+═══════════════════════════════════════════════════════════════ -->
+<button class="music-btn" id="music-btn" onclick="toggleMusic()" title="Toggle Music">🎵</button>
+
+<script src="script.js"></script>
+</body>
+</html>
